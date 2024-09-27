@@ -11,3 +11,4 @@ coverage/
 *.tmp
 *.bak
 *.DS_Store
+.craco.config.js

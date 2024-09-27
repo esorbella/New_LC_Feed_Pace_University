@@ -1,16 +1,14 @@
-import Text from '../../stylizedComponents/Text';
-import { Period } from '../../types/weatherType';
-import { titleProps } from '../../types/props';
-import { lc_coordinates, lc_locations } from '../../consts/consts';
-import useWeatherData from '../../hooks/use-weather';
+import { lc_coordinates, lc_locations } from '@Components/common';
+import { Text } from '@Components/common';
+import { Period, useWeatherData, WeatherBannerProps } from '@Hooks';
 
-const WeatherBanner = ({
+const WeatherBanner: React.FC<WeatherBannerProps> = ({
     location = lc_locations.plv,
     coordinates = lc_coordinates.plv,
-}: titleProps) => {
+}: WeatherBannerProps) => {
     const { weatherData, highLow, loading } = useWeatherData(coordinates);
 
-    const currentForcast = () => {
+    const CurrentForcast = () => {
         const period = weatherData.periods[0];
         return (
             <div className="h-full w-1/4 flex flex-col items-center rounded-md">
@@ -22,15 +20,21 @@ const WeatherBanner = ({
                                 <Text
                                     key={index}
                                     classNameProps="text-sm line-clamp-2 text-center"
-                                    content={sentence}
-                                />
+                                >
+                                    {sentence}
+                                </Text>
                             ),
                     )}
             </div>
         );
     };
 
-    const dayForcast = (period: Period, index: number) => {
+    interface DayForcastProps {
+        period: Period;
+        index: number;
+    }
+
+    const DayForcast: React.FC<DayForcastProps> = ({ period, index }: DayForcastProps) => {
         return (
             <div
                 key={index}
@@ -38,62 +42,68 @@ const WeatherBanner = ({
             >
                 <Text
                     classNameProps="font-bold text-sm"
-                    content={period.name}
-                />
+                >
+                    {period.name}
+                </Text>
                 <div className='w-full h-full p-1 text-center'>
                     <Text
                         classNameProps="text-sm line-clamp-1"
-                        content={period.shortForecast}
-                    />
+                    >
+                        {period.shortForecast}
+                    </Text>
                 </div>
                 <div className="flex flex-row space-x-3">
                     <Text
                         classNameProps="text-sm"
-                        content={`H: ${highLow[index].high}°`}
-                    />
+                    >
+                        {`H: ${highLow[index].high}°`}
+                    </Text>
                     <Text
                         classNameProps="text-sm"
-                        content={`L: ${highLow[index].low}°`}
-                    />
+                    >
+                        {`L: ${highLow[index].low}°`}
+                    </Text>
                 </div>
             </div>
         );
     };
 
-    const weekForcast = () => {
+    const WeekForcast = () => {
         return (
             <div className="h-full w-3/4 pl-4 pr-4 flex flex-row justify-start">
                 {weatherData.periods.map(
                     (period: Period, index: number) =>
-                        index !== 0 && dayForcast(period, index),
+                        index !== 0 && <DayForcast key={index} period={period} index={index} />,
                 )}
             </div>
         );
     };
 
-    const forcast = () => {
+    const Forcast = () => {
         return (
             <div className="h-fit w-full pl-4 pr-4 flex flex-row justify-center items-center bg-blue-700 rounded-md">
-                {currentForcast()}
-                {weekForcast()}
+                <CurrentForcast />
+                <WeekForcast />
             </div>
         );
     };
 
-    const titles = () => {
+    const Titles = () => {
         return (
             <div className="h-fit w-full flex-row flex pl-2 pr-2 mb-2">
                 <div className="h-fit w-1/4 text-center">
                     <Text
                         classNameProps="font-bold text-xl"
-                        content={`Current Weather in ${location}`}
-                    />
+                    >
+                        {`Current Weather in ${location}`}
+                    </Text>
                 </div>
                 <div className="h-fit w-3/4 text-center">
                     <Text
                         classNameProps="font-bold text-xl"
-                        content="Weekly Weather"
-                    />
+                    >
+                        Weekly Weather
+                    </Text>
                 </div>
             </div>
         );
@@ -101,15 +111,16 @@ const WeatherBanner = ({
 
     return (
         <div className="h-30 mt-2 flex flex-col bg-blue-900 p-2 pt-0 items-center rounded-md">
-            {titles()}
+            <Titles />
             {loading ? (
                 <Text
                     classNameProps="text-2xl text-center"
-                    content="Loading Weather Data..."
-                />
-            ) : (
-                forcast()
-            )}
+                >
+                    Loading Weather Data...
+                </Text>
+            ) :
+                <Forcast />
+            }
         </div>
     );
 };

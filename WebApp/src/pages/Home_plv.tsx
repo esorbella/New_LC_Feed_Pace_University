@@ -1,9 +1,6 @@
-import Header from '../components/header/Header';
-import Body from '../components/middle/Body';
-import Ticker from '../components/stockticker/Ticker';
-import { lc_coordinates, lc_locations } from '../consts/consts';
+import { Body, Header, lc_coordinates, lc_locations, StockTicker } from "@Components";
 
-const Home_plv = () => {
+const Home_plv: React.FC = () => {
     return (
         <div className="h-screen bg-sky-300 p-2">
             <Header
@@ -11,7 +8,7 @@ const Home_plv = () => {
                 coordinates={lc_coordinates.plv}
             />
             <Body />
-            <Ticker />
+            <StockTicker />
         </div>
     );
 };

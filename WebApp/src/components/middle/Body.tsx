@@ -1,9 +1,8 @@
+import { Text } from '@Components/common';
+import { useDate, useYoutube } from '@Hooks';
 import YouTubePlayer from './YouTubePlayer';
-import Text from '../../stylizedComponents/Text';
-import useDate from '../../hooks/use-date';
-import useYoutube from '../../hooks/use-youtube';
 
-const Body = () => {
+const Body: React.FC = () => {
     const { currentDate, currentTime } = useDate();
     const { youTubeLink } = useYoutube();
 
@@ -12,12 +11,14 @@ const Body = () => {
             <div className="h-full w-1/2 bg-blue-900 flex flex-col justify-center text-center rounded-l-md">
                 <Text
                     classNameProps="text-4xl font-bold"
-                    content={currentDate}
-                />
+                >
+                    {currentDate}
+                </Text>
                 <Text
                     classNameProps="text-4xl font-bold"
-                    content={currentTime}
-                />
+                >
+                    {currentTime}
+                </Text>
             </div>
             <div className="h-full w-1/2 bg-blue-900">
                 <YouTubePlayer videoId={youTubeLink} />

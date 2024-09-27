@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "start": "craco start",
+        "build": "craco build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "format": "prettier package.json \"./**/*.{js,jsx,ts,tsx}\" --write",
         "setup": "echo REACT_APP_YOUTUBE_LINK=wbgRkhC3bKc > .env & yarn install & yarn lint & yarn format & yarn start"
@@ -28,6 +28,8 @@
         ]
     },
     "dependencies": {
+        "@craco/craco": "^7.1.0",
+        "craco-alias": "^3.0.1",
         "eslint-plugin-jsx-a11y": "^6.8.0",
         "eslint-plugin-react": "^7.34.1",
         "eslint-plugin-tsdoc": "^0.2.17",

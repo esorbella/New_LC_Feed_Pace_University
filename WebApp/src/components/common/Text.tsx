@@ -1,21 +1,20 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 interface TextProps {
     classNameProps: string;
-    content: string;
     colorOverride?: boolean;
 }
 
-const Text: React.FC<TextProps> = ({
+const Text: React.FC<PropsWithChildren<TextProps>> = ({
     classNameProps,
-    content,
     colorOverride = false,
-}) => {
+    children
+}: PropsWithChildren<TextProps>) => {
     return (
         <p
             className={`${classNameProps} ${colorOverride ? '' : 'text-slate-50'}`}
         >
-            {content}
+            {children}
         </p>
     );
 };

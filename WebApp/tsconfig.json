@@ -1,6 +1,10 @@
 {
+  "extends": "./tsconfig.path.json",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "./src/",
+    "baseUrl": ".",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -9,20 +13,13 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": ["src"],
-  /* Linting */
-  "strict": true,
   "noUnusedLocals": true,
-  "noUnusedParameters": true,
-  "noFallthroughCasesInSwitch": true,
-  "paths": {
-    "@*": ["./src/*"],
-  }
+  "noUnusedParameters": true
 }

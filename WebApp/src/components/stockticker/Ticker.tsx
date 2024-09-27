@@ -1,4 +1,4 @@
-const Ticker = () => {
+const Ticker: React.FC = () => {
     return (
         <div className="w-full h-fit flex justify-center bg-white rounded-md border-2 border-white mt-2">
             <iframe

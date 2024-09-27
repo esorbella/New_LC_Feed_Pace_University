@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Period, WeatherType, highLowPeriod } from '../types/weatherType';
 
 const useWeatherLink = (coordinates: string) => {
     const [link, setLink] = useState<string>('');
@@ -98,5 +97,31 @@ const useWeatherData = (coordinates: string) => {
 
     return { weatherData, highLow, loading };
 };
+
+export interface WeatherType {
+    periods: Period[];
+    updateTime: string;
+}
+
+export interface Period {
+    number: number;
+    detailedForecast: string;
+    name: string;
+    startTime: string;
+    shortForecast: string;
+    temperature: number;
+}
+
+export interface highLowPeriod {
+    id: number;
+    high: number;
+    low: number;
+}
+
+export interface WeatherBannerProps {
+    location?: string;
+    coordinates?: string;
+    weather_banner?: boolean;
+}
 
 export default useWeatherData;

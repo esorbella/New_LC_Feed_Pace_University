@@ -1,25 +1,24 @@
-import Header from '../components/header/Header';
-import Text from '../stylizedComponents/Text';
-import Pace_NYC from '../images/Pace_NYC.jpg';
-import Pace_PLV from '../images/Pace_PLV.jpg';
 import { Link } from 'react-router-dom';
+import { pace_nyc_image, pace_plv_image } from '@Assets';
+import { Header, Text } from '@Components';
 
-const Home = () => {
+const Home: React.FC = () => {
     return (
         <div className="h-screen bg-sky-300 p-2">
             <Header weather_banner={false} />
             <div className="rounded-md bg-blue-900 p-2 flex flex-col justify-center h-2/3 text-center">
                 <div className="h-1/6 w-full">
                     <Text
-                        content={'Please Select LC Location'}
                         classNameProps={' text-4xl text-center'}
-                    />
+                    >
+                        Please Select an LC Location
+                    </Text>
                 </div>
                 <div className="h-5/6 w-full flex flex-row justify-center">
                     <Link to="/nyc" className="h-full w-1/2">
                         <img
                             alt="Pace NYC Campus"
-                            src={Pace_NYC}
+                            src={pace_nyc_image}
                             style={{
                                 width: '100%',
                                 height: '100%',
@@ -31,7 +30,7 @@ const Home = () => {
                     <Link to="/plv" className="h-full w-1/2">
                         <img
                             alt='Pace PLV Campus'
-                            src={Pace_PLV}
+                            src={pace_plv_image}
                             style={{
                                 width: '100%',
                                 height: '100%',

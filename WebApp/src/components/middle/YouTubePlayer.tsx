@@ -1,6 +1,8 @@
-import { YoutubePlayerType } from '../../types/youtubePlayerType';
+export interface YoutubePlayerProps {
+    videoId: string;
+}
 
-const YouTubePlayer = ({ videoId }: YoutubePlayerType) => {
+const YouTubePlayer: React.FC<YoutubePlayerProps> = ({ videoId }: YoutubePlayerProps) => {
     return (
         <div className="h-full w-full">
             <iframe
