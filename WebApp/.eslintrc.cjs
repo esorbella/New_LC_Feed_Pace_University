@@ -28,7 +28,6 @@ module.exports = {
             'warn',
             { allowConstantExport: true },
         ],
-        "react/react-in-jsx-scope": "off",
         'tsdoc/syntax': 'warn',
     },
     settings: {
@@ -36,5 +35,4 @@ module.exports = {
             version: 'detect',
         },
     },
-    ignorePatterns: ['dist', '.eslintrc.cjs', 'craco.config.js'],
 };
